@@ -1,4 +1,6 @@
-### Starship template
+### Starship + Tailwind template
+
+This is a basic button counter app made to showcase the main features of Starship.
 
 #### Getting started
 ```
