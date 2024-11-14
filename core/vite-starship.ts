@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { transform as esbuildTransform } from 'esbuild'
-import { compile } from './core/compiler'
+import { compile } from './compiler'
 
 export function starshipPlugin() {
   return {
@@ -27,9 +27,14 @@ export function starshipPlugin() {
           : ''
 
         const code = `
-import { h, Show, Fragment } from "@dom"
+import { h, Show, Fragment, For } from "@dom"
 import { createSignals, createSignal } from "@reactivity"
-import { effect, match, when, _ } from "@framework"
+import { 
+  effect, match, when, _, range,
+  some, Some, None, ok, none, err, guard,
+  Option, Result, Ok, Err, Pattern,
+  unwrap, unwrapOr
+} from "@framework"
 
 ${scriptContent}
 
@@ -43,6 +48,7 @@ export default function Component() {
   );
 }
         `
+
         const result = await esbuildTransform(code, {
           loader: 'tsx',
           sourcemap: true,

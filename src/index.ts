@@ -1,8 +1,5 @@
 // This is the main entry point of your application.
-
-export { createSignals, createSignal } from '../core/reactivity'
-export { Show, h, Fragment } from '../core/dom'
-export { match } from '../core/framework'
+// Get started by editing App.uss!
 
 // @ts-ignore
 import App from './App.uss'
@@ -29,7 +26,6 @@ function flattenElements(elements) {
 
 if (isBrowser) {
   const appElement = App()
-  console.log(appElement)
   const flatElements = flattenElements(appElement)
 
   for (const node of flatElements) {

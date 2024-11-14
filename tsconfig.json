@@ -11,8 +11,11 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
+    "strict": false
   },
   "include": [
     "src",
+    "core",
+    "core/vite-starship.ts"
   ]
 }

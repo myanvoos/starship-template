@@ -1,23 +1,22 @@
 <script>
 const { count, message } = createSignals({
-  count: 0,
+  _count: 0,
   message: "Hello Starship!"
-});
+})
 
-const increment = () => {
-  setCount(count.value + 1);
-};
+attachToCount(() => setMessage(count.value, [
+  [when(v => v > 20), effect(() => {
+    setCount(0)
+    return "Whoa, too much!"
+  })],
+  [when(v => range(7, 10).includes(v)), "Getting a bit high, isn't it?"],
+  [when(v => range(15, 20).includes(v)), "I mean, up to you..."],
+  [_, "Keep going..."]
+]))
 </script>
 
 <style>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-button {
+#increment {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   margin: 1rem;
@@ -25,8 +24,8 @@ button {
 }
 </style>
 
-<div class="container">
+<div ".container max-w-[800px] m-auto p-2 text-center space-y-5">
   <h1>{message}</h1>
   <p>Count: {count}</p>
-  <button onClick={increment}>Increment</button>
+  <button "#increment" on:click={setCount(+1)}>Increment</button>
 </div>
